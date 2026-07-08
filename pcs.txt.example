@@ -1,0 +1,12 @@
+# Lista de hostnames para verificação de uptime — um por linha.
+# Renomeie este arquivo para pcs.txt para ativar.
+# Linhas começando com # são ignoradas.
+
+CORP-SP-001
+CORP-SP-002
+CORP-SP-003
+CORP-SP-NOT001
+CORP-SP-NOT002
+CORP-RJ-001
+CORP-RJ-002
+CORP-DF-001
