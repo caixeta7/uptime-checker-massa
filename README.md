@@ -32,10 +32,12 @@ Copy-Item pcs.txt.example pcs.txt
 ### 3. Executar
 
 ```powershell
-.\uptime_checker.ps1
+.\Run-Uptime.ps1
 ```
 
-O relatório é gerado automaticamente em `.\Relatorios\Uptime_Maquinas_YYYY-MM-DD_HH-mm.xlsx`.
+Ou dê dois cliques em `uptime.bat`. Threads, timeout e quantidade de pings ficam em `Config\settings.psd1`.
+
+O relatório é gerado automaticamente em `.\Relatorios\Uptime_Maquinas_YYYY-MM-DD_HH-mm.xlsx` (ou CSV, se o `ImportExcel` não estiver instalado).
 
 ## Formato do pcs.txt
 
@@ -43,14 +45,25 @@ O relatório é gerado automaticamente em `.\Relatorios\Uptime_Maquinas_YYYY-MM-
 CORP-SP-001
 CORP-SP-002
 CORP-RJ-001
-# Comentários são ignorados
+```
+
+## Estrutura
+
+```
+Run-Uptime.ps1          orquestrador
+uptime.bat              atalho para executar
+Config/settings.psd1    MaxThreads, TimeoutMs, PingCount
+Modules/
+  Core.Network.psm1     ping + coleta WMI em RunspacePool
+  Core.Excel.psm1       exportação Excel (fallback CSV)
+  UI.Console.psm1       saída formatada no console
 ```
 
 ## Pré-requisitos
 
 - Windows com PowerShell 5.1+
 - Acesso WMI nas máquinas-alvo (admin de domínio ou conta de serviço)
-- Módulo `ImportExcel` instalado
+- Módulo `ImportExcel` (opcional; sem ele o relatório sai em CSV)
 
 ## Contexto
 
